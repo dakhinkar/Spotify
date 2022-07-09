@@ -4,6 +4,7 @@ import { MdHomeFilled, MdSearch } from "react-icons/md";
 import styles from "./Sidebar.module.css";
 import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constant";
+import PlayList from "../PlayList/PlayList";
 function Sidebar(props) {
   const [{ token, isSearching }, dispatch] = useStateProvider();
   const onClickSearch = (value) => {
@@ -35,7 +36,7 @@ function Sidebar(props) {
       </div>
       <div>
         <hr />
-        playlist
+        <PlayList/>
       </div>
     </div>
   );
