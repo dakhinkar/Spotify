@@ -9,5 +9,6 @@ export const reducerCases = {
     SET_SEARCH_CLICK: "SET_SEARCH_CLICK",
     SET_HEADER_BG: "SET_HEADER_BG",
     SET_NAV_BG: "SET_NAV_BG",
+    SET_VOLUME_STATE : "SET_VOLUME_STATE",
 
 }

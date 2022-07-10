@@ -11,6 +11,7 @@ export const initialState = {
     isSearching: false,
     headerBg:false,
     navBg: false,
+    volume : 20,
 }
 const reducer = (state, action) =>{
     switch(action.type){
@@ -72,6 +73,12 @@ const reducer = (state, action) =>{
             return {
                 ...state,
                 headerBg : action.headerBg,
+            }
+        }
+        case reducerCases.SET_VOLUME_STATE: {
+            return {
+                ...state,
+                isMute : action.isMute,
             }
         }
         default:
