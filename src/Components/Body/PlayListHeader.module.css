@@ -1,6 +1,6 @@
 .list {
     position: sticky;
-    top: 18vh;
+    top: 10vh;
 }
 .header_row {
     display: grid;
@@ -8,7 +8,7 @@
     color: #dddcdc;
     margin: 1rem 0 0 0;
     position: sticky;
-    top: 15vh;
+    top: 5vh;
     padding: 1rem 3rem;
     transition: 0.3s ease-in-out;
 }

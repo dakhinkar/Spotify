@@ -1,14 +1,15 @@
 .tracks {
-  margin: 0 2rem;
+  margin: 0 0;
   display: flex;
   flex-direction: column;
   margin-bottom: 5rem;
   width: 100%;
 }
 .tracks .row {
+  width: 100%;
   padding: 0.5rem 1rem;
   display: grid;
-  grid-template-columns: 0.3fr 3fr 1.9fr 0.1fr;
+  grid-template-columns: 0.15fr 2.5fr 2.5fr 0.5fr;
 }
 .tracks .row :hover {
   background-color: rgba(0, 0, 0, 0.7);

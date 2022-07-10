@@ -6,7 +6,7 @@ import Cart from "./Cart";
 import styles from "./Cart.module.css";
 import AlbumPlayList from "./AlbumPlayList";
 
-function Body(props) {
+function Body() {
   const [{ token, playlists, selectedPlaylistId }, dispatch] = useStateProvider();
 
 

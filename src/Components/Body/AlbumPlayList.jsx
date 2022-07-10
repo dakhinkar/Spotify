@@ -56,7 +56,7 @@ function AlbumPlayList(props) {
   }, [token, selectedPlaylistId, dispatch]);
 
   return (
-    <div className="container">
+    <div className="container" style={{width: "100%"}}>
       {selectedPlaylist && (
         <>
           <AlbumHeader />

@@ -9,14 +9,15 @@ function Cart({ image, title, id }) {
       ? "https://cdn.pixabay.com/photo/2016/09/10/11/11/musician-1658887_960_720.jpg"
       : image.url;
 
+  const ablumSelected = (id) => {
+    dispatch({
+      type: reducerCases.SET_SELECTED_PLAYLIST_ID,
+      selectedPlaylistId: id,
+    });
+  };
 
-      const ablumSelected = (id) =>{
-        dispatch({type:reducerCases.SET_SELECTED_PLAYLIST_ID, selectedPlaylistId: id})
-      }
-    
-      console.log(selectedPlaylistId);
   return (
-    <div className={styles.card} onClick={()=> ablumSelected(id)}>
+    <div className={styles.card} onClick={() => ablumSelected(id)}>
       <div className={styles.img_details}>
         <img src={url} alt="album-image" />
       </div>

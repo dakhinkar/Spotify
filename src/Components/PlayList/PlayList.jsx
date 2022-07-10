@@ -28,11 +28,15 @@ function PlayList(props) {
     getPlaylistData();
   }, [token, dispatch]);
 
+
+  const ablumSelected = (id) =>{
+    dispatch({type:reducerCases.SET_SELECTED_PLAYLIST_ID, selectedPlaylistId: id})
+  }
   return (
     <div className={styles.container}>
       <ul>
         {playlists.map(({ name, id }) => {
-          return <li key={id}>{name}</li>;
+          return <li key={id} onClick={()=> ablumSelected(id)}>{name}</li>;
         })}
       </ul>
     </div>

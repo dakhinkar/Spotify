@@ -9,6 +9,8 @@ export const initialState = {
     currentlyPlaying : null,
     playerState : false,
     isSearching: false,
+    headerBg:false,
+    navBg: false,
 }
 const reducer = (state, action) =>{
     switch(action.type){
@@ -58,6 +60,18 @@ const reducer = (state, action) =>{
             return {
                 ...state,
                 isSearching : action.isSearching,
+            }
+        }
+        case reducerCases.SET_NAV_BG: {
+            return {
+                ...state,
+                navBg : action.navBg,
+            }
+        }
+        case reducerCases.SET_HEADER_BG: {
+            return {
+                ...state,
+                headerBg : action.headerBg,
             }
         }
         default:
