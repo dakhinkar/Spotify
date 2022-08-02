@@ -5,7 +5,8 @@ import styles from "./TrackDetails.module.css";
 import axios from "axios";
 
 function TrackDetails({ data, index }) {
-  const [{token, currentlyPlaying, playerState}, dispatch] = useStateProvider();
+  const [{ token, currentlyPlaying, playerState }, dispatch] =
+    useStateProvider();
   const msToMinAndSec = (ms) => {
     const min = Math.floor(ms / 60000);
     const sec = ((ms % 60000) / 1000).toFixed(0);
@@ -19,22 +20,38 @@ function TrackDetails({ data, index }) {
     context_uri,
     track_number
   ) => {
-    const response = await axios.put(
-      `https://api.spotify.com/v1/me/player/play`,
-      {
-        context_uri: context_uri,
-        offset: {
-          position: track_number - 1,
+    const response = await axios
+      .put(
+        `https://api.spotify.com/v1/me/player/play`,
+        {
+          context_uri: context_uri,
+          offset: {
+            position: track_number - 1,
+          },
+          position_ms: 0,
         },
-        position_ms: 0,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .catch((err) => {
+        let errText = err.response.data.error;
+        let bodyMassage = "";
+        if (errText.message === "The access token expired") {
+          //   bodyMassage =
+          //     "Without login you not able to access content, please login first!";
+          // } else {
+          bodyMassage = "Your tocken is expire please do Re-login";
+        }
+        dispatch({
+          type: reducerCases.SET_ERROR,
+          title: errText.message,
+          message: bodyMassage,
+        });
+      });
     if (response.status === 204) {
       const currentlyPlaying = {
         id: id,

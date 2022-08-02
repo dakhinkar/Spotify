@@ -37,14 +37,25 @@ function Spotify(props) {
           if (errText.message === "Invalid access token") {
             bodyMassage =
               "Without login you not able to access content, please login first!";
+            dispatch({
+              type: reducerCases.SET_ERROR,
+              title: errText.message,
+              message: bodyMassage,
+            });
+          } else if (errText.reason === "PREMIUM_REQUIRED") {
+            dispatch({
+              type: reducerCases.SET_ERROR,
+              title: errText.reason,
+              message: errText.message,
+            });
           } else {
             bodyMassage = "Your tocken is expire please do Re-login";
+            dispatch({
+              type: reducerCases.SET_ERROR,
+              title: errText.message,
+              message: bodyMassage,
+            });
           }
-          dispatch({
-            type: reducerCases.SET_ERROR,
-            title: errText.message,
-            message: bodyMassage,
-          });
         });
       if (response) {
         const userInfo = {

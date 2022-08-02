@@ -13,8 +13,23 @@ function CurrentTrack(props) {
             Authorization: "Bearer " + token,
             "Content-Type": "application/json",
           },
-        }).catch((err) => console.warn("err"));
-        
+        })
+        .catch((err) => {
+          let errText = err.response.data.error;
+          let bodyMassage = "";
+          if (errText.message === "The access token expired") {
+            //   bodyMassage =
+            //     "Without login you not able to access content, please login first!";
+            // } else {
+            bodyMassage = "Your tocken is expire please do Re-login";
+          }
+          dispatch({
+            type: reducerCases.SET_ERROR,
+            title: errText.message,
+            message: bodyMassage,
+          });
+        });
+
       if (response) {
         const { item } = response.data;
         const currentlyPlaying = {
@@ -25,7 +40,7 @@ function CurrentTrack(props) {
         };
         dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
       }
-      console.log(currentlyPlaying)
+      console.log(currentlyPlaying);
     };
     getCurrnetTrack();
   }, [token, dispatch]);

@@ -6,7 +6,6 @@ import axios from "axios";
 function SearchBar(props) {
   const [{ token, isSearching }, dispatch] = useStateProvider();
   const serachData = async (e) => {
-    console.log("gere");
     const search = e.target.value;
     const response = await axios.get(
       "	https://api.spotify.com/v1/search",

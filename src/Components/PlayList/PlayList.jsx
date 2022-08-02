@@ -16,7 +16,35 @@ function PlayList(props) {
             "Content-Type": "application/json",
           },
         })
-        .catch((err) => console.warn("err"));
+        .catch((err) => {
+          let errText = err.response.data.error;
+          let bodyMassage = "";
+          if (errText.message === "The access token expired") {
+            //   bodyMassage =
+            //     "Without login you not able to access content, please login first!";
+            // } else {
+            bodyMassage = "Your tocken is expire please do Re-login";
+            dispatch({
+              type: reducerCases.SET_ERROR,
+              title: errText.message,
+              message: bodyMassage,
+            });
+          } else if (errText.reason === "PREMIUM_REQUIRED") {
+            dispatch({
+              type: reducerCases.SET_ERROR,
+              title: errText.reason,
+              message: errText.message,
+            });
+          } else {
+            bodyMassage =
+              "Without login you not able to access content, please login first!";
+            dispatch({
+              type: reducerCases.SET_ERROR,
+              title: errText.message,
+              message: bodyMassage,
+            });
+          }
+        });
       if (response) {
         const { items } = response.data;
         const playlists = items.map(({ name, id, images }) => {

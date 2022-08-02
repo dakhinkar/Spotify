@@ -24,11 +24,7 @@ function Login(props) {
       " "
     )}&response_type=token&show_dialog=true`;
 
-    dispatch({
-      type: reducerCases.SET_ERROR,
-      title: null,
-      message:null,
-    })
+    
   };
 
   return (
