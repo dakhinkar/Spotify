@@ -4,13 +4,14 @@ import Sidebar from "./Sidebar/Sidebar";
 import NavBar from "./NavBar/NavBar";
 import Footer from "./Footer/Footer";
 import Body from "./Body/Body";
+import Error from "./Modal/Error";
 import { useStateProvider } from "../utils/StateProvider";
 import { reducerCases } from "../utils/Constant";
 import axios from "axios";
 
 function Spotify(props) {
   const bodyRef = useRef();
-  const [{ token, headerBg, navBg }, dispatch] = useStateProvider();
+  const [{ token, error, headerBg, navBg }, dispatch] = useStateProvider();
 
   const bodyScrolled = () => {
     bodyRef.current.scrollTop >= 30
@@ -23,17 +24,35 @@ function Spotify(props) {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const { data } = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      });
-      const userInfo = {
-        userId: data.id,
-        userName: data.display_name,
-      };
-      dispatch({ type: reducerCases.SET_USERINFO, userInfo });
+      const response = await axios
+        .get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        })
+        .catch((err) => {
+          let errText = err.response.data.error;
+          let bodyMassage = "";
+          if (errText.message === "Invalid access token") {
+            bodyMassage =
+              "Without login you not able to access content, please login first!";
+          } else {
+            bodyMassage = "Your tocken is expire please do Re-login";
+          }
+          dispatch({
+            type: reducerCases.SET_ERROR,
+            title: errText.message,
+            message: bodyMassage,
+          });
+        });
+      if (response) {
+        const userInfo = {
+          userId: response.data.id,
+          userName: response.data.display_name,
+        };
+        dispatch({ type: reducerCases.SET_USERINFO, userInfo });
+      }
     };
     getUserInfo();
   }, [token, dispatch]);
@@ -45,6 +64,7 @@ function Spotify(props) {
         <div className={styles.body} ref={bodyRef} onScroll={bodyScrolled}>
           <NavBar />
           <div className="body_contents">
+            {error.title && <Error />}
             <Body />
           </div>
         </div>

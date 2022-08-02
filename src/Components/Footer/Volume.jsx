@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 
 function Volume(props) {
-    const [volumeValue , setVolumes] = useState(0);
+    const [volumeValue , setVolumes] = useState(20);
    const [{token}] = useStateProvider();
     const setVolume = async (e) =>{
         var volume =  parseInt(e.target.value);
@@ -35,7 +35,7 @@ function Volume(props) {
             {
                 volumeValue <= 1 ? <MdVolumeMute/> : <MdVolumeUp/>
             }
-            <input type="range" min={0} max={100}  onChange={(e) => setVolume(e)}/>
+            <input type="range" title={volumeValue} min={0} max={100}  onChange={(e) => setVolume(e)}/>
         </div>
     );
 }

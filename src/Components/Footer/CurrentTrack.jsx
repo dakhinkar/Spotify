@@ -4,19 +4,18 @@ import { reducerCases } from "../../utils/Constant";
 import axios from "axios";
 import styles from "./CurrentTrack.module.css";
 function CurrentTrack(props) {
-  const [{ token, currentlyPlaying }, dispatch] = useStateProvider();
+  const [{ token, error, currentlyPlaying }, dispatch] = useStateProvider();
   useEffect(() => {
     const getCurrnetTrack = async () => {
-      const response = await axios.get(
-        "https://api.spotify.com/v1/me/player/currently-playing",
-        {
+      const response = await axios
+        .get("https://api.spotify.com/v1/me/player/currently-playing", {
           headers: {
             Authorization: "Bearer " + token,
             "Content-Type": "application/json",
           },
-        }
-      );
-      if (response.data !== "") {
+        }).catch((err) => console.warn("err"));
+        
+      if (response) {
         const { item } = response.data;
         const currentlyPlaying = {
           id: item.id,
@@ -26,6 +25,7 @@ function CurrentTrack(props) {
         };
         dispatch({ type: reducerCases.SET_PLAYING, currentlyPlaying });
       }
+      console.log(currentlyPlaying)
     };
     getCurrnetTrack();
   }, [token, dispatch]);

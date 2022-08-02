@@ -16,16 +16,27 @@ function PlayerControl(props) {
 
   const changeTrack = async (type) => {
     console.log(type);
-    await axios.post(
-      `https://api.spotify.com/v1/me/player/${type}`,
-      {},
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    await axios
+      .post(
+        `https://api.spotify.com/v1/me/player/${type}?device_id=+this._device_id`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .catch((err) => {
+        let errText = err.response.data.error;
+        if (errText.reason === "PREMIUM_REQUIRED") {
+          dispatch({
+            type: reducerCases.SET_ERROR,
+            title: errText.reason,
+            message: errText.message,
+          });
+        }
+      });
     const response = await axios.get(
       "https://api.spotify.com/v1/me/player/currently-playing",
       {
@@ -52,40 +63,54 @@ function PlayerControl(props) {
 
   const changeState = async () => {
     const state = playerState ? "pause" : "play";
-    await axios.put(
-      `https://api.spotify.com/v1/me/player/${state}`,
-      {},
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    dispatch({
-      type: reducerCases.SET_PLAYER_STATE,
-      playerState: !playerState,
-    });
+    let response = await axios
+      .put(
+        `https://api.spotify.com/v1/me/player/${state}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .catch((err) => {
+        let errText = err.response.data.error;
+        if (errText.reason === "PREMIUM_REQUIRED") {
+          dispatch({
+            type: reducerCases.SET_ERROR,
+            title: errText.reason,
+            message: errText.message,
+          });
+        }
+      });
+    if (response) {
+      dispatch({
+        type: reducerCases.SET_PLAYER_STATE,
+        playerState: !playerState,
+      });
+    }
   };
+
   return (
     <div className={styles.container}>
-      <div className={styles.shuffle}>
+      <div className={styles.shuffle} title="Shuffle">
         <BsShuffle />
       </div>
-      <div className={styles.previous}>
+      <div className={styles.previous} title="Previous">
         <CgPlayTrackPrev onClick={() => changeTrack("previous")} />
       </div>
-      <div className={styles.state}>
+      <div className={styles.state} title="Play/Pause">
         {playerState ? (
           <BsFillPauseCircleFill onClick={changeState} />
         ) : (
           <BsFillPlayCircleFill onClick={changeState} />
         )}
       </div>
-      <div className={styles.next}>
+      <div className={styles.next} title="Next">
         <CgPlayTrackNext onClick={() => changeTrack("next")} />
       </div>
-      <div className={styles.repeat}>
+      <div className={styles.repeat} title="Repeat">
         <FiRepeat />
       </div>
     </div>

@@ -7,17 +7,18 @@ import styles from "./Cart.module.css";
 import AlbumPlayList from "./AlbumPlayList";
 
 function Body() {
-  const [{ token, playlists, selectedPlaylistId }, dispatch] = useStateProvider();
-
+  const [{ token, playlists, selectedPlaylistId }, dispatch] =
+    useStateProvider();
 
   return (
     <div className={styles.container}>
-        {
-           selectedPlaylistId === null ? ( playlists.map(({id, name, image }) => {
-                return <Cart key={id} title={name} image={image} id={id}  />
-            })): (<AlbumPlayList/>)
-        }   
-       
+      {selectedPlaylistId === null ? (
+        playlists.map(({ id, name, image }) => {
+          return <Cart key={id} title={name} image={image} id={id} />;
+        })
+      ) : (
+        <AlbumPlayList />
+      )}
     </div>
   );
 }

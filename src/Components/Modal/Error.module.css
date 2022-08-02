@@ -1,0 +1,64 @@
+.error_container {
+  position: absolute;
+  height: 12rem;
+  width: 50%;
+  left: 30%;
+  display: flex;
+  flex-direction: column;
+  /* padding: 0.5rem; */
+  background-color: white;
+  z-index: 10;
+  border-radius: 10px;
+}
+.error_title {
+  background-color: lightgray;
+  height: 25%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.5rem;
+}
+.error_title h1 {
+  font-size: 1.5rem;
+}
+.error_message {
+  background-color: white;
+  height: 50%;
+  padding: 0.5rem;
+}
+.error_footer {
+  background-color: lightgray;
+  height: 25%;
+  padding: 0.5rem;
+  text-align: end;
+}
+button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+}
+.error_title button {
+  background-color: red;
+
+  border: 1px solid red;
+}
+.error_title button:hover {
+  background-color: white;
+  color: red;
+  border-color: white;
+}
+
+.error_footer button {
+  
+  background-color: blue;
+  border: 1px solid blue;
+}
+
+.error_footer button:hover {
+  background-color: white;
+  color: blue;
+  border-color: white;
+}

@@ -6,16 +6,19 @@ import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constant";
 import PlayList from "../PlayList/PlayList";
 function Sidebar(props) {
-  const [{ token, isSearching, selectedPlaylistId }, dispatch] = useStateProvider();
+  const [{ token, isSearching, selectedPlaylistId }, dispatch] =
+    useStateProvider();
   const onClickSearch = (value) => {
     dispatch({ type: reducerCases.SET_SEARCH_CLICK, isSearching: value });
   };
 
-  const onClickHome = () =>{
-   
+  const onClickHome = () => {
     onClickSearch(false);
-    dispatch({type: reducerCases.SET_SELECTED_PLAYLIST_ID, selectedPlaylistId : null });
-  }
+    dispatch({
+      type: reducerCases.SET_SELECTED_PLAYLIST_ID,
+      selectedPlaylistId: null,
+    });
+  };
   return (
     <div className={styles.container}>
       <div className={styles.top_links}>
@@ -42,7 +45,7 @@ function Sidebar(props) {
       </div>
       <div>
         <hr />
-        <PlayList/>
+        <PlayList />
       </div>
     </div>
   );

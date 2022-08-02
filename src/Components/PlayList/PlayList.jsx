@@ -9,34 +9,41 @@ function PlayList(props) {
 
   useEffect(() => {
     const getPlaylistData = async () => {
-      const response = await axios.get(
-        "https://api.spotify.com/v1/me/playlists",
-        {
+      const response = await axios
+        .get("https://api.spotify.com/v1/me/playlists", {
           headers: {
             Authorization: "Bearer " + token,
             "Content-Type": "application/json",
           },
-        }
-      );
-      const { items } = response.data;
-      const playlists = items.map(({ name, id, images }) => {
-        return { name, id, image: images[1] };
-      });
-      console.log(playlists);
-      dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
+        })
+        .catch((err) => console.warn("err"));
+      if (response) {
+        const { items } = response.data;
+        const playlists = items.map(({ name, id, images }) => {
+          return { name, id, image: images[1] };
+        });
+        console.log(playlists);
+        dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
+      }
     };
     getPlaylistData();
   }, [token, dispatch]);
 
-
-  const ablumSelected = (id) =>{
-    dispatch({type:reducerCases.SET_SELECTED_PLAYLIST_ID, selectedPlaylistId: id})
-  }
+  const ablumSelected = (id) => {
+    dispatch({
+      type: reducerCases.SET_SELECTED_PLAYLIST_ID,
+      selectedPlaylistId: id,
+    });
+  };
   return (
     <div className={styles.container}>
       <ul>
         {playlists.map(({ name, id }) => {
-          return <li key={id} onClick={()=> ablumSelected(id)}>{name}</li>;
+          return (
+            <li key={id} onClick={() => ablumSelected(id)}>
+              {name}
+            </li>
+          );
         })}
       </ul>
     </div>

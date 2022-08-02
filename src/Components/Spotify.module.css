@@ -4,6 +4,7 @@
   overflow: hidden;
   display: grid;
   grid-template-rows: 85vh 15vh;
+  z-index: 1;
 }
 /* Sidebar , Navbar  and Body */
 .spotify_body {

@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import styles from "./NavBar.module.css";
-import {reducerCases} from "../../utils/Constant";
-import {useStateProvider} from "../../utils/StateProvider";
+import { reducerCases } from "../../utils/Constant";
+import { useStateProvider } from "../../utils/StateProvider";
 
 function Login(props) {
-  const [{isLogin}, dispatch] = useStateProvider();
-  
-   
+  const [{ isLogin }, dispatch] = useStateProvider();
+
   const handleClick = () => {
     const clientId = "a648116ea0cf4b89995fbcc0055eea73";
-    const redirectUrl = "https://my-spotify-01.netlify.app/";
+    const redirectUrl = "http://localhost:3000/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [
       "user-read-email",
@@ -25,13 +24,16 @@ function Login(props) {
       " "
     )}&response_type=token&show_dialog=true`;
 
-    
-    
+    dispatch({
+      type: reducerCases.SET_ERROR,
+      title: null,
+      message:null,
+    })
   };
 
   return (
     <div className={styles.user}>
-       <button onClick={handleClick}>Login</button> 
+      <button onClick={handleClick}>Login</button>
     </div>
   );
 }
