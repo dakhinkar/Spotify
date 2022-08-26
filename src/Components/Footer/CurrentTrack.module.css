@@ -23,3 +23,15 @@
   font-weight: 200;
   color: #b3b3b3;
 }
+
+@media screen and (max-width:700px) {
+  .track{
+    gap: 0.5rem;
+  }
+  .track_info h4{
+    font-size: 0.7rem;
+  }
+  .track_info h6{
+    font-size: 0.4rem;
+  }
+}

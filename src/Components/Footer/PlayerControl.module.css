@@ -17,3 +17,12 @@ svg :hover {
 .previous, .next, .state{
     font-size: 2rem;
 }
+
+@media screen and (max-width: 700px) {
+  .container{
+    gap:1rem;
+  }
+  .previous , .nextm ,.state{
+    font-size: 1rem;
+  }
+}
