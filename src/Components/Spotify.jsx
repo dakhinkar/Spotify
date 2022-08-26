@@ -80,7 +80,7 @@ function Spotify(props) {
           </div>
         </div>
       </div>
-      <div className="spotify_footer">
+      <div className={styles.spotifyFooter}>
         <Footer />
       </div>
     </div>

@@ -72,7 +72,7 @@ const defaultPlaylist = [
       width: 300,
     },
     name: "My Playlist #2",
-  },
+  }
 ];
 export const initialState = {
   token: null,

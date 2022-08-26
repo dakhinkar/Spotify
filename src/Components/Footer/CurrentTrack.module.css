@@ -5,7 +5,8 @@
 }
 
 .track_image img {
-  height: 60px;
+  
+  height: 70px;
 }
 
 .track_info {
@@ -14,8 +15,11 @@
   gap: 0.3rem;
 }
 .track_info h4 {
+  font-size: 1rem;
   color: white;
 }
 .track_info h6 {
+  font-size: 0.7rem;
+  font-weight: 200;
   color: #b3b3b3;
 }
