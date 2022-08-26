@@ -9,6 +9,7 @@
   position: sticky;
   top: 0;
   transition: 0.3 ease-in-out;
+  width: 100%;
   
 }
 
@@ -43,6 +44,8 @@
   justify-content: center;
   align-items: center;
 }
+
+
 
 .avatar a {
   display: flex;
@@ -88,4 +91,13 @@
   font-size: 1rem;
   background-color: white;
   color : black;
+}
+
+@media screen and (max-width: 912px) {
+  .container{
+      position: sticky;
+        top: 0;
+        
+        
+  }
 }

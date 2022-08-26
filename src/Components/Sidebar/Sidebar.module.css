@@ -1,11 +1,12 @@
 /* Whole side bar */
 .container {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   color: #b3b3b3;
   display: flex;
   flex-direction: column;
   height: 85vh;
   width: 100%;
+  transition: 1.3s ease-in-out;
 }
 
 /* Logo */
@@ -35,7 +36,51 @@
   gap: 1rem;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  border-bottom: 1px solid black;
 }
 .top_links ul li:hover {
   color: white;
+  margin-left: 5px;
+  font-weight: 600;
 }
+/* .containerSm{
+
+}
+.containerXm{
+
+} */
+.menuIcon{
+  display: none;
+}
+
+ @media screen  and (max-width: 912px) {
+    .menuIcon{
+      position: fixed; 
+      display: block; 
+      left: 10px;
+      top: 10px;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 1rem;
+      
+    }
+    .container{
+      height: 87vh;
+      transition: 1.3s ease-in-out;
+    }
+    .menuIcon svg{
+      color: white;
+      font-weight: bold;
+    }
+    .containerSm{
+      position: absolute;
+      width: 60vw;
+      z-index: 10;
+      left: -100%;
+    }
+    .containerXm{
+      left : 0;
+        
+    }
+
+ }

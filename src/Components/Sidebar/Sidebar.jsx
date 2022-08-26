@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoLibrary } from "react-icons/io5";
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { ImCross } from 'react-icons/im';
 import { MdHomeFilled, MdSearch } from "react-icons/md";
 import styles from "./Sidebar.module.css";
 import { useStateProvider } from "../../utils/StateProvider";
 import { reducerCases } from "../../utils/Constant";
 import PlayList from "../PlayList/PlayList";
 function Sidebar(props) {
+  const [isVisible, setISVisible] = useState(false);
   const [{ token, isSearching, selectedPlaylistId }, dispatch] =
     useStateProvider();
   const onClickSearch = (value) => {
@@ -19,8 +22,14 @@ function Sidebar(props) {
       selectedPlaylistId: null,
     });
   };
-  return (
-    <div className={styles.container}>
+  return (<>
+
+    <div className={`${styles.container} ${styles.containerSm} ${isVisible ? styles.containerXm : ""}`}>
+      <div className={styles.menuIcon}>
+        {
+          isVisible ? <ImCross onClick={() => setISVisible(false)} /> : <GiHamburgerMenu onClick={() => setISVisible(true)} />
+        }
+      </div>
       <div className={styles.top_links}>
         <div className={styles.logo}>
           <img
@@ -48,6 +57,7 @@ function Sidebar(props) {
         <PlayList />
       </div>
     </div>
+  </>
   );
 }
 

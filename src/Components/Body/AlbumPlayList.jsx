@@ -58,8 +58,6 @@ function AlbumPlayList(props) {
             });
           }
         });
-      // console.log("response" + response);
-      // console.log(response.data);
       if (response) {
         const selectedPlaylist = {
           id: response.data.id,

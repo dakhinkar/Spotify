@@ -72,9 +72,9 @@ function Spotify(props) {
     <div className={styles.container}>
       <div className={styles.spotify_body}>
         <Sidebar />
-        <div className={styles.body} ref={bodyRef} onScroll={bodyScrolled}>
+        <div className={styles.body}>
           <NavBar />
-          <div className="body_contents">
+          <div className={styles.body_contents} ref={bodyRef} onScroll={bodyScrolled}>
             {error.title && <Error />}
             <Body />
           </div>
@@ -88,3 +88,6 @@ function Spotify(props) {
 }
 
 export default Spotify;
+
+
+
