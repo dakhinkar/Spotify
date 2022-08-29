@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: 0.15fr 2.5fr 2.5fr 0.5fr;
 }
-.tracks .row :hover {
+.row:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
 .col {
@@ -29,4 +29,24 @@
 .info {
   display: flex;
   flex-direction: column;
+}
+
+
+@media  screen and (max-width: 800px) {
+  .tracks .row {
+      text-align: left;
+      padding: 0.5rem 0;
+      grid-template-columns: 8% 50% 30% 12%;
+      padding: 0.5rem 0rem
+    }
+    .col{
+      word-wrap: break-word;
+      padding : 0 0.3rem;
+    }
+    .hide{
+      display: none;
+    }
+    .image img{
+      height: 50px;
+    }
 }

@@ -9,7 +9,7 @@
     background-color: #181818;
     display: grid;
     color:white;
-    grid-template-rows: 15rem 3rem;
+    grid-template-rows: 83% 17%;
     cursor: pointer;
 }
 
@@ -20,6 +20,7 @@
 .img_details img{
     width: 80%;
     height: 80%;
+    
     padding-top: 1.5rem;
 }
 .album_title{
@@ -32,3 +33,27 @@
     display: flex;
     flex-wrap: wrap;
 } 
+
+
+@media screen and (max-width: 800px) {
+    .container{
+        margin-left: 0;
+    }
+    .card{
+        width: 15rem;
+        height: 15rem;
+        grid-template-rows: 70% 30%;
+    }   
+    .album_title h5{
+        font-size: 0.5rem;
+    } 
+}
+@media screen and (max-width: 280px) {
+    .container{
+        margin-left: 0;
+    }
+    .card{
+        width: 13rem;
+        height: 13rem;
+    }
+}

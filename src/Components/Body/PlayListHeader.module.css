@@ -1,6 +1,7 @@
 .list {
     position: sticky;
-    top: 10vh;
+    top: 0;
+    width: 100%;
 }
 .header_row {
     display: grid;
@@ -11,4 +12,16 @@
     top: 5vh;
     padding: 1rem 3rem;
     transition: 0.3s ease-in-out;
+}
+
+
+@media screen and (max-width: 800px) {
+    .header_row{
+        padding: 0.5rem 0;
+        grid-template-columns: 8% 50% 30% 12%;
+        padding : 1rem 0.2rem
+    }
+    .list{
+        top: 0;
+    }
 }

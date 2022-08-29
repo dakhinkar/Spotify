@@ -78,6 +78,7 @@ function TrackDetails({ data, index }) {
         )
       }
     >
+
       <div className={styles.col}>
         <span>{index + 1}</span>
       </div>
@@ -86,12 +87,12 @@ function TrackDetails({ data, index }) {
           <img src={data.image} alt="track" />
         </div>
         <div className={styles.info}>
-          <span className={styles.name}>{data.name}</span>
-          <span>{data.artists}</span>
+          <span className={styles.name}>{data.name.slice(0, data.name.indexOf('('))}</span>
+          <span className={styles.hide}>{data.artists}</span>
         </div>
       </div>
       <div className={styles.col}>
-        <span>{data.album}</span>
+        <span>{data.album.slice(0, data.album.indexOf('('))}</span>
       </div>
       <div className={styles.col}>
         <span>{msToMinAndSec(data.duration)}</span>

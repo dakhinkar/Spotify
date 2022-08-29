@@ -8,6 +8,7 @@ function Login(props) {
 
   const handleClick = () => {
     const clientId = "a648116ea0cf4b89995fbcc0055eea73";
+    // const redirectUrl = "http://localhost:3000/";
     const redirectUrl = "https://my-spotify-01.netlify.app/";
     const apiUrl = "https://accounts.spotify.com/authorize";
     const scope = [

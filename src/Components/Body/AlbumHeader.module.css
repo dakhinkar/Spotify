@@ -1,7 +1,8 @@
-.playlist {
+.playlist {  
   margin: 0 2rem;
   display: flex;
   align-items: center;
+  /* flex-wrap: wrap; */
   gap: 1rem;
 }
 .playlist .image img {
@@ -17,4 +18,16 @@
 .playlist .details .title {
   color: white;
   font-size: 4rem;
+}
+
+@media screen and (max-width: 800px) {
+  .playlist{
+    margin: 0 0.3rem;
+  }
+  .playlist .image img{
+    height: 10rem;
+  }
+  .playlist .details .title{
+    font-size: 1.5rem;
+  }
 }
